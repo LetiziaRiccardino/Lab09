@@ -2,29 +2,29 @@ package it.polito.tdp.borders.model;
 
 public class Border {
 	
-	private int ccode1;
-	private int ccode2;
+	private Country c1;
+	private Country c2;
 //	private String StateAbb1;
 //	private String StateAbb2;
 	private int year;
 //	private int conttype;
-	public Border(int ccode1, int ccode2, int year) {
+	public Border(Country c1, Country c2, int year) {
 		super();
-		this.ccode1 = ccode1;
-		this.ccode2 = ccode2;
+		this.c1 = c1;
+		this.c2 = c2;
 		this.year = year;
 	}
-	public int getCcode1() {
-		return ccode1;
+	public Country getC1() {
+		return c1;
 	}
-	public void setCcode1(int ccode1) {
-		this.ccode1 = ccode1;
+	public void setC1(Country c1) {
+		this.c1 = c1;
 	}
-	public int getCcode2() {
-		return ccode2;
+	public Country getC2() {
+		return c2;
 	}
-	public void setCcode2(int ccode2) {
-		this.ccode2 = ccode2;
+	public void setC2(Country c2) {
+		this.c2 = c2;
 	}
 	public int getYear() {
 		return year;
@@ -34,8 +34,9 @@ public class Border {
 	}
 	@Override
 	public String toString() {
-		return "Border [ccode1=" + ccode1 + ", ccode2=" + ccode2 + ", year=" + year + "]";
+		return "Border [c1=" + c1.getCcode() + ", c2=" + c2.getCcode() + ", year=" + year + "]";
 	}
+	
 	
 	
 

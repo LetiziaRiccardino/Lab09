@@ -24,7 +24,7 @@ public class TestDAO {
 		
 		
 		List<Border> border= new ArrayList<Border>();
-		border=dao.getCountryPairs(2000);
+		border=dao.getCountryPairs(2000, idMap);
 		System.out.print("Numero archi: "+border.size());
 	}
 }

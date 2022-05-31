@@ -37,7 +37,7 @@ public class BordersDAO {
 		}
 	}
 
-	public List<Border> getCountryPairs(int anno) {
+	public List<Border> getCountryPairs(int anno, Map<Integer, Country> idMap) {
 		
 		String sql="SELECT c.state1no as c1, c.state2no as c2, c.year as anno "
 				+ "FROM contiguity c "
@@ -52,7 +52,25 @@ public class BordersDAO {
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
-				Border b= new Border(rs.getInt("c1"), rs.getInt("c2"), rs.getInt("anno"));
+				
+				int c1Code = rs.getInt("c1");
+				int c2Code = rs.getInt("c2");
+				
+//				Border b= new Border(rs.getInt("c1"), rs.getInt("c2"), rs.getInt("anno"));
+//				result.add(b);
+				
+				// The identity map guarantees the uniqueness of c1 and c2 objets 
+				Country c1 = idMap.get(c1Code);
+				Country c2 = idMap.get(c2Code);
+				
+				// Just check that c1 and c2 object really exist, otherwise skip them
+				if (c1 != null && c2 != null) {
+					result.add(new Border(c1, c2, rs.getInt("anno") ));
+				} else {
+					System.out.println("Error skipping " + String.valueOf(c1Code) + " - " + String.valueOf(c2Code));
+				}
+				
+				Border b = new Border(c1, c2, rs.getInt("anno"));
 				result.add(b);
 			}
 			
